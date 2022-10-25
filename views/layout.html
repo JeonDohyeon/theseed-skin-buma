@@ -82,21 +82,31 @@
                         <span class="icon">
                             <i class="far fa-copyright"></i>
                         </span> 라이선스</a>
-                    {%if perms.has('ipacl') %}
-                    <a class="navbar-item" href="/admin/ipacl">
-                        <span class="icon">
-                            <i class="fas fa-ban"></i>
+                    {%if verrev('4.17.99') %}
+                        {%if perms.has('ipacl') %}
+                        <a class="navbar-item" href="/admin/ipacl">
+                            <span class="icon">
+                                <i class="fas fa-ban"></i>
+                            </span>
+                            [관리] IPACL
+                        </a>
+                        {% endif %}
+                        {%if perms.has('suspend_account') %}
+                        <a class="navbar-item" href="/admin/suspend_account">
+                            <span class="icon">
+                                <i class="fas fa-ban"></i>
                         </span>
-                        [관리] IPACL
-                    </a>
-                    {% endif %}
-                    {%if perms.has('suspend_account') %}
-                    <a class="navbar-item" href="/admin/suspend_account">
-                        <span class="icon">
-                            <i class="fas fa-ban"></i>
-                        </span>
-                        [관리] 사용자 차단
-                    </a>
+                            [관리] 사용자 차단
+                        </a>
+                        {% endif %}
+                    {% else %}
+                        {%if perms.has('aclgroup') %}
+                        <a class="navbar-item" href="/aclgroup">
+                            <span class="icon">
+                                <i class="fas fa-ban"></i>
+                            </span>
+                            [관리] ACLGroup
+                        </a>
                     {% endif %}
                     {%if perms.has('grant') %}
                     <a class="navbar-item" href="/admin/grant">
